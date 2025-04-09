@@ -229,7 +229,6 @@ export default function Home() {
       }
     });
 
-    console.log("Solutions:", newSolutions);
     setSolutions(newSolutions);
     setShowSolution(true);
   };
@@ -258,8 +257,6 @@ export default function Home() {
     setSolutions([]);
     setShowSolution(false);
   };
-
-  // ... (keep all the imports and previous code up to the return statement the same)
 
   return (
     <main className="min-h-screen bg-blue-50 p-4 md:p-8">
