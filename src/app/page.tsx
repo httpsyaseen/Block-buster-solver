@@ -198,7 +198,7 @@ export default function Home() {
   };
 
   const handleSolve = () => {
-    const newSolutions = [];
+    const newSolutions: any[] = [];
     const blocks = [figure1, figure2, figure3];
     let currentGrid = initialGrid.map((row) => [...row]);
 
@@ -228,7 +228,7 @@ export default function Home() {
         });
       }
     });
-
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
     setSolutions(newSolutions);
     setShowSolution(true);
   };
