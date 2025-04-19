@@ -35,7 +35,7 @@ const ai = new GoogleGenAI({
   apiKey: "AIzaSyA9uIX5FYtHeVPnaJNC5CIBHw9EMPSuih0",
 });
 
-function extractArrayBlocks(text) {
+function extractArrayBlocks(text: string) {
   const regex = /```([\s\S]*?)```/g;
   const matches = [];
   let match;
@@ -58,7 +58,7 @@ export default function Home() {
   const [imageUrl, setImageUrl] = useState<string | null>(null); // New state for image URL
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
-  const [solutionGrid, setSolutionGrid] = useState([]);
+  const [solutionGrid, setSolutionGrid] = useState<number[][][]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isError, setIsError] = useState(false);
 
@@ -104,14 +104,14 @@ export default function Home() {
       const response = await ai.models.generateContent({
         model: "gemini-2.0-flash",
         contents: createUserContent([
-          createPartFromUri(myfile.uri, myfile.mimeType),
+          createPartFromUri(myfile.uri ?? "", myfile.mimeType ?? ""),
           PROMPT,
         ]),
       });
-      const sol = extractArrayBlocks(response.text);
+      const sol = extractArrayBlocks(response.text || "");
 
-      setSolutionGrid(sol);
-      setResult(response.text);
+      setSolutionGrid(sol || []);
+      setResult(response.text || "");
     } catch (error) {
       setIsError(true);
       console.error("Error processing image:", error);
