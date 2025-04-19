@@ -197,12 +197,49 @@ export default function Home() {
     return { completedRows, completedCols };
   };
 
+  // const handleSolve = () => {
+  //   const newSolutions: any[] = [];
+  //   const blocks = [figure1, figure2, figure3];
+  //   let currentGrid = initialGrid.map((row) => [...row]);
+
+  //   blocks.forEach((figure, index) => {
+  //     const result = findBestPosition(currentGrid, figure);
+  //     if (result.bestPositions.length > 0 && result.bestScore >= 0) {
+  //       const position = result.bestPositions[0];
+  //       const trimmedFigure = trimBlock(figure);
+  //       const solutionGrid = applyBlockToGrid(
+  //         currentGrid,
+  //         trimmedFigure,
+  //         position
+  //       );
+  //       newSolutions.push({
+  //         figure,
+  //         solution: solutionGrid,
+  //         position,
+  //         canBePlaced: true,
+  //       });
+  //       currentGrid = solutionGrid;
+  //     } else {
+  //       newSolutions.push({
+  //         figure,
+  //         solution: null,
+  //         position: null,
+  //         canBePlaced: false,
+  //       });
+  //     }
+  //   });
+  //   /* eslint-disable  @typescript-eslint/no-explicit-any */
+  //   setSolutions(newSolutions);
+  //   setShowSolution(true);
+  // };
+
   const handleSolve = () => {
     const newSolutions: any[] = [];
     const blocks = [figure1, figure2, figure3];
-    let currentGrid = initialGrid.map((row) => [...row]);
 
     blocks.forEach((figure, index) => {
+      // Always start with the initialGrid for each block
+      const currentGrid = initialGrid.map((row) => [...row]);
       const result = findBestPosition(currentGrid, figure);
       if (result.bestPositions.length > 0 && result.bestScore >= 0) {
         const position = result.bestPositions[0];
@@ -218,7 +255,6 @@ export default function Home() {
           position,
           canBePlaced: true,
         });
-        currentGrid = solutionGrid;
       } else {
         newSolutions.push({
           figure,
@@ -228,11 +264,10 @@ export default function Home() {
         });
       }
     });
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
+
     setSolutions(newSolutions);
     setShowSolution(true);
   };
-
   const handleClear = () => {
     setInitialGrid(
       Array(8)

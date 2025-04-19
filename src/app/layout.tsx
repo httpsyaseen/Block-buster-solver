@@ -25,6 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* <script
+          async
+          src="https://docs.opencv.org/4.x/opencv.js"
+          onLoad={() => console.log("OpenCV.js loaded from CDN")}
+        /> */}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
