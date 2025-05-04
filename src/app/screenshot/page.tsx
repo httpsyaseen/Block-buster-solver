@@ -1,5 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import type React from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ImageIcon, Grid2X2 } from "lucide-react";
@@ -9,6 +11,14 @@ import {
   createPartFromUri,
 } from "@google/genai";
 import GridDisplay from "@/components/display-grid";
+import HowToUse from "@/components/homepageContent/how-to-use";
+import WhyChooseUse from "@/components/homepageContent/why-choose-us";
+import CoreFeatures from "@/components/homepageContent/core-features";
+import PerformanceReliability from "@/components/homepageContent/performance-reliability";
+import Reviews from "@/components/homepageContent/reviews";
+import Conclusion from "@/components/homepageContent/conclusion";
+import FAQ from "@/components/homepageContent/faq";
+import Tips from "@/components/homepageContent/tips";
 
 const PROMPT = `There is a game in which I will give you an image like this. In the image:
 
@@ -122,20 +132,17 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
+    <div className="min-h-screen bg-purple-50">
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold text-purple-600 mb-4">
             Block Blast Solver Online
           </h1>
-          <p className="text-xl text-gray-700">
-            Get Block Blast high score solution by taking screenshots
-          </p>
         </div>
 
         {/* Main Content Card */}
-        <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8">
+        <main className="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8">
           <h2 className="text-3xl font-bold text-center mb-3">
             Screenshot Solver
           </h2>
@@ -149,7 +156,7 @@ export default function Home() {
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 flex flex-col items-center justify-center h-[400px]">
                 {imageUrl ? (
                   <img
-                    src={imageUrl}
+                    src={imageUrl || "/placeholder.svg"}
                     alt="Uploaded screenshot"
                     className="max-h-full max-w-full object-contain rounded-lg"
                   />
@@ -225,7 +232,7 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </div>
+        </main>
       </main>
       <section className="container mx-auto px-4 py-12 flex flex-row items-center justify-center gap-8">
         {!loading &&
@@ -259,6 +266,64 @@ export default function Home() {
           </section>
         )}
       </section>
+      {/* Content Sections */}
+      <div className="container mx-auto py-8 max-w-[1024px] ">
+        {/* What is Block Blast Solver */}
+        <section className="mb-20">
+          <h2 className="text-4xl font-bold text-center mb-6">
+            What is Block Blast Solver?
+          </h2>
+          <p className="text-gray-700 leading-relaxed text-center text-lg">
+            Block Blast Solver represents an innovative AI-based solution which
+            helps users solve Block Blast puzzles with ease. Through board
+            examination the tool generates strategic moves that lead to better
+            scores while solving demanding level
+          </p>
+        </section>
+
+        {/* How to Use */}
+        <HowToUse />
+
+        {/* How Does the Block Blast Online System Work */}
+        <section className="mb-12">
+          <h2 className="text-4xl font-bold text-center mb-6">
+            How Does the Block Blast Online System Work?
+          </h2>
+          <p className="text-gray-700 leading-relaxed text-[18px] mb-3">
+            The strategic puzzle game Block Blast lets players remove rows and
+            columns by placing different block shapes into an 8x8 grid. The
+            gameplay differs from Tetris because blocks do not automatically
+            fall into place but players receive three blocks at once to drag and
+            drop onto the grid. The main goal of the game requires players to
+            fill entire rows or columns so they disappear and award points. The
+            game terminates when players run out of available space for placing
+            new blocks. The game becomes increasingly difficult throughout its
+            progression because new shapes appear and the game speed
+            accelerates.
+          </p>
+        </section>
+
+        {/* Why Choose Block Blast Solver */}
+        <WhyChooseUse />
+
+        {/* Core Features */}
+        <CoreFeatures />
+
+        {/* Performance & Reliability */}
+        <PerformanceReliability />
+
+        {/* Tips to Achieve High Scores */}
+        <Tips />
+
+        {/* Reviews */}
+        <Reviews />
+
+        {/* Conclusion */}
+        <Conclusion />
+
+        {/* FAQ */}
+        <FAQ />
+      </div>
     </div>
   );
 }
